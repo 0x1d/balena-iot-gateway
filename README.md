@@ -1,7 +1,7 @@
 # Composite docker application with Node-RED, MQTT broker, Telegraf, InfluxDb, Grafana, Nginx) deployed on Raspberry Pi through [Balena](https://www.balena.io).
 
 IoT gateway based on [balena-node-red-mqtt-nginx-TIG-stack](https://github.com/janvda/balena-node-red-mqtt-nginx-TIG-stack).  
-To reduce resource demands, the additional Node-RED and MQTT broker instances have been removed.  
+To reduce resource demands, the additional Node-RED and MQTT broker test instances have been removed.  
 
 ## Features
 This project is a proof of concept to demonstrate the following features:
@@ -78,7 +78,7 @@ Note that the Node-RED editor protected by a user name and a **hashed** password
 2. In order to assure that nodes installed through `npm install` are not lost after a restart of the container, you must assure that they are installed in the `\data` directory. So you must first do a `cd \data` and then execute the `npm install ....` command. This will assure that the node is correctly installed under folder `\data\node_modules\` and that it will persist after restarts of the container.
 
 ## 6. MQTT broker
-This application consist of 2 [Mosquitto MQTT-brokers](https://mosquitto.org/):
+This application consist of [Mosquitto MQTT-brokers](https://mosquitto.org/):
 1. **mqtt** which is listening to Host OS port 1883
 
 ## 7. Setup of the USB memory Stick for Influxdb
