@@ -8,6 +8,7 @@ services:
     - K3S_KUBECONFIG_OUTPUT=/output/kubeconfig.yaml
     - K3S_KUBECONFIG_MODE=666
     volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
     - k3s-server:/var/lib/rancher/k3s
     # This is just so that we get the kubeconfig file out
     - kubeconfig:/output
@@ -21,6 +22,8 @@ services:
     - /var/run
     privileged: true
     command: agent --docker
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
     - server
     environment:
@@ -28,7 +31,8 @@ services:
     - K3S_CLUSTER_SECRET=somethingtotallyrandom
     # Can also use K3S_TOKEN from /var/lib/rancher/k3s/server/node-token instead of K3S_CLUSTER_SECRET
     #- K3S_TOKEN=K13849a67fc385fd3c0fa6133a8649d9e717b0258b3b09c87ffc33dae362c12d8c0::node:2e373dca319a0525745fd8b3d8120d9c
-
+    labels:
+      io.balena.features.dbus: '1'
 volumes:
   k3s-server: {}
   kubeconfig: {}
