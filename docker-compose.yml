@@ -26,6 +26,8 @@ services:
     command: agent --docker
     depends_on:
     - server
+    volumes:
+    - /var/run/balena.sock:/var/run/docker.sock
     environment:
     - K3S_URL=https://server:6443
     - K3S_CLUSTER_SECRET=somethingtotallyrandom
