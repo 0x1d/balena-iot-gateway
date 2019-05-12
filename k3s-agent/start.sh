@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "Starting Agent"
 ln -s /var/run/balena.sock /var/run/docker.sock
