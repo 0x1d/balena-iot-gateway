@@ -18,7 +18,7 @@ services:
       io.balena.features.balena-socket: '1'
 
   node:
-    image: rancher/k3s:v0.5.0-arm
+    #image: rancher/k3s:v0.5.0-arm
     build: k3s-agent
     tmpfs:
     - /run
