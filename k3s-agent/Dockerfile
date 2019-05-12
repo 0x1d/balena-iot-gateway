@@ -1,4 +1,3 @@
 FROM rancher/k3s:v0.5.0-arm
-WORKDIR /k3s
 COPY . .
-CMD [ "/k3s/start.sh" ]
+ENTRYPOINT [ "./start.sh" ]
