@@ -25,6 +25,7 @@ services:
     - /var/run
     privileged: true
     #command: agent --docker
+    command: /k3s/start.sh
     depends_on:
     - server
     # balena doesnt support bind mounts
