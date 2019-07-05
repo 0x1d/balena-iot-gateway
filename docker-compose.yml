@@ -1,44 +1,82 @@
 version: '2'
-services:
-  server:
-    image: rancher/k3s:v0.5.0-arm
-    command: server --disable-agent
-    environment:
-    - K3S_CLUSTER_SECRET=somethingtotallyrandom
-    - K3S_KUBECONFIG_OUTPUT=/output/kubeconfig.yaml
-    - K3S_KUBECONFIG_MODE=666
-    volumes:
-    - k3s-server:/var/lib/rancher/k3s
-    # This is just so that we get the kubeconfig file out
-    - kubeconfig:/output
-    ports:
-    - 6443:6443
-    labels:
-      io.balena.features.dbus: '1'
-      io.balena.features.balena-socket: '1'
-
-  node:
-    #image: rancher/k3s:v0.5.0-arm
-    build: k3s-agent
-    tmpfs:
-    - /run
-    - /var/run
-    privileged: true
-    #command: agent --docker
-    command: start.sh
-    depends_on:
-    - server
-    # balena doesnt support bind mounts
-    #volumes:
-    #- /var/run/balena.sock:/var/run/docker.sock
-    environment:
-    - K3S_URL=https://server:6443
-    - K3S_CLUSTER_SECRET=somethingtotallyrandom
-    # Can also use K3S_TOKEN from /var/lib/rancher/k3s/server/node-token instead of K3S_CLUSTER_SECRET
-    #- K3S_TOKEN=K13849a67fc385fd3c0fa6133a8649d9e717b0258b3b09c87ffc33dae362c12d8c0::node:2e373dca319a0525745fd8b3d8120d9c
-    labels:
-      io.balena.features.dbus: '1'
-      io.balena.features.balena-socket: '1'
 volumes:
-  k3s-server: {}
-  kubeconfig: {}
+    node-red-data:
+    influxdb-data:
+services:
+  influxdb:
+    build: influxdb
+    container_name: influxdb
+    # privileged added so usb drive can be mounted.
+    privileged: true
+    volumes:
+        # take care that the mount location "/mnt/influxdb" becomes overwritten
+        # by the mount location specified in the influxdb Dockerfile.
+        - 'influxdb-data:/mnt/influxdb'   
+    ports:
+      # The API for InfluxDB is served on port 8086
+      - "8082:8082"
+      - "8086:8086"
+      # UDP Port
+      - "8089:8089"
+    restart: always
+  telegraf:
+    # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
+    build : telegraf
+    pid: "host"
+    network_mode: "host"
+    privileged: true
+    labels:
+      io.resin.features.balena-socket: '1'
+    depends_on:
+      - influxdb
+    restart: always
+    environment:
+       - interval=60s
+       - flush_interval=60s
+  grafana:
+    build: grafana 
+    ports:
+       - "3000:3000"
+    depends_on:
+       - influxdb
+    restart: always
+  mqtt:
+    image: panuwitp/mosquitto-arm
+    ports:
+      - "1883:1883"
+  node-red:
+    build: node-red
+    volumes:
+       - 'node-red-data:/data'
+    ports:
+       - "1880:1880"
+    depends_on:
+        - mqtt
+    restart: always
+  nginx:
+    build : nginx
+    depends_on:
+      - grafana
+      - node-red
+    ports:
+       - "80:80"
+       - "443:443"
+    restart: always
+  wpe:
+    restart: always
+    build: ./wpe
+    privileged: true
+    ports:
+      - 8080:8080
+  scheduler:
+    restart: always
+    build: ./scheduler
+    privileged: true
+  wifi-connect:
+    build: ./wifi-connect
+    restart: always
+    network_mode: host
+    privileged: true
+    labels:
+      io.balena.features.dbus: '1'
+      io.balena.features.firmware: '1'
