@@ -8,8 +8,8 @@ services:
     image: bltavares/zerotier
     container_name: zerotier
     network_mode: 'host'
-    privileged: true
-    device:
+    #privileged: true
+    devices:
       - '/dev/net/tun:/dev/net/tun'
     cap_add:
       - NET_ADMIN
