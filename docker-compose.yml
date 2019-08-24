@@ -2,7 +2,20 @@ version: '2'
 volumes:
     node-red-data:
     influxdb-data:
+    zerotier-data:
 services:
+  zerotier:
+    image: bltavares/zerotier
+    container_name: zerotier
+    network_mode: "host"
+    privileged: true
+    device:
+      - '/dev/net/tun:/dev/net/tun'
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    volumes:
+      - 'zerotier-data:/var/lib/zerotier-one'
   influxdb:
     build: influxdb
     container_name: influxdb
@@ -62,6 +75,7 @@ services:
        - "80:80"
        - "443:443"
     restart: always
+  # WebKit
   wpe:
     restart: always
     build: ./wpe
