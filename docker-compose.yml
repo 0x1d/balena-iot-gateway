@@ -3,6 +3,7 @@ volumes:
     node-red-data:
     influxdb-data:
     zerotier-data:
+
 services:
   zerotier:
     image: bltavares/zerotier
