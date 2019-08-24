@@ -16,9 +16,9 @@ services:
       - NET_ADMIN
       - SYS_ADMIN
     volumes:
-      - 'zerotier-data:/var/lib/zerotier-one'
+        - 'zerotier-data:/var/lib/zerotier-one'
   influxdb:
-    build: influxdbzerotier
+    build: influxdb
     container_name: influxdb
     # privileged added so usb drive can be mounted.
     privileged: true
