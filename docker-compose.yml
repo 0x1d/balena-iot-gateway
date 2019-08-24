@@ -7,7 +7,7 @@ services:
   zerotier:
     image: bltavares/zerotier
     container_name: zerotier
-    network_mode: "host"
+    network_mode: 'host'
     privileged: true
     device:
       - '/dev/net/tun:/dev/net/tun'
@@ -17,7 +17,7 @@ services:
     volumes:
       - 'zerotier-data:/var/lib/zerotier-one'
   influxdb:
-    build: influxdb
+    build: influxdbzerotier
     container_name: influxdb
     # privileged added so usb drive can be mounted.
     privileged: true
