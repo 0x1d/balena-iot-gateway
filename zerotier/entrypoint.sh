@@ -1,7 +1,5 @@
 #!/bin/bash
 
 echo "Start ZeroTier Daemon"
+touch /var/lib/zerotier-one/networks.d/${ZT_NW_ID}.conf
 zerotier-one
-zerotier-cli info
-echo "Join netwok ${ZT_NW_ID}"
-zerotier-cli join ${ZT_NW_ID}
