@@ -5,7 +5,10 @@ volumes:
     zerotier-data:
 services:
   zerotier:
-    build: zerotier
+    build: 
+      context: zerotier
+      args:
+        ZEROTIER_VERSION: 1.4.0
     container_name: zerotier
     network_mode: 'host'
     #privileged: true
