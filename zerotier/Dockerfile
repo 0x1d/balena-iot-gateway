@@ -34,5 +34,6 @@ COPY --from=builder \
   /var/lib/zerotier-one/zerotier-idtool \
   /usr/sbin/zerotier-one \
   /usr/sbin/
+COPY ./entrypoint.sh /
 
-CMD ["/usr/sbin/zerotier-one"]
+ENTRYPOINT [ "/bin/sh", "-c", "/entrypoint.sh" ]
