@@ -5,7 +5,7 @@ volumes:
     zerotier-data:
 services:
   zerotier:
-    image: bltavares/zerotier
+    build: zerotier
     container_name: zerotier
     network_mode: 'host'
     #privileged: true
