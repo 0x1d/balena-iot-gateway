@@ -1,6 +1,10 @@
 #!/bin/bash
 
+# FIXME this should be started background through an init system
 echo "Start ZeroTier Daemon"
-mkdir -p /var/lib/zerotier-one/networks.d
-touch /var/lib/zerotier-one/networks.d/${ZT_NW_ID}.conf
-zerotier-one
+zerotier-one -d
+sleep 10
+zerotier-cli info
+
+echo "Join netwok ${ZT_NW_ID}"
+zerotier-cli join ${ZT_NW_ID}
