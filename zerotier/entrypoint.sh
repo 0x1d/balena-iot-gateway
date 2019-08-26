@@ -2,7 +2,7 @@
 
 # FIXME this should be started background through an init system
 echo "Start ZeroTier Daemon"
-nohup zerotier-one -d
+nohup zerotier-one &
 sleep 10
 zerotier-cli info
 
