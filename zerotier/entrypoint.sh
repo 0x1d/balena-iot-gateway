@@ -19,7 +19,7 @@ else
     exit 1
 fi;
 
-while [ "$ZT_STATUS" == "ONLINE" ]
+while [ "$ZT_STATUS" = "ONLINE" ]
 do
     ZT_STATUS=$(echo $(zerotier-cli info) | awk '{print $5}')
 	sleep 5
