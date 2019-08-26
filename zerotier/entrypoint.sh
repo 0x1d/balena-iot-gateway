@@ -16,10 +16,10 @@ if [ "$ZT_JOIN_STATUS" = "OK" ]; then
     ZT_STATUS="ONLINE"
 else
     echo "Join unsuccessful. Exit." 
-    exit 0
+    exit 1
 fi;
 
-while [ "$ZT_STATUS" eq "ONLINE"]
+while [ "$ZT_STATUS" == "ONLINE"]
 do
     ZT_STATUS=$(echo $(zerotier-cli info) | awk '{print $5}')
 	sleep 5
