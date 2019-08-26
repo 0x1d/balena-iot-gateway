@@ -18,7 +18,7 @@ services:
       - SYS_ADMIN
     volumes:
       - 'zerotier-data:/var/lib/zerotier-one'
-    restart: always
+    restart: unless-stopped
   influxdb:
     build: influxdb
     container_name: influxdb
