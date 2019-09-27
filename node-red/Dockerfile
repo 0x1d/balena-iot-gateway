@@ -1,4 +1,4 @@
-FROM nodered/node-red-docker:rpi-v8
+FROM nodered/node-red-docker:rpi-v10
 
 # installing an editor
 USER root
