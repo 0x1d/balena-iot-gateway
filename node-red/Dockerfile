@@ -2,10 +2,10 @@ FROM nodered/node-red-docker:rpi-v8
 
 # installing an editor
 USER root
-RUN apt-get update && apt-get install -y nano curl && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+RUN apt-get update && apt-get install -y nano curl
 USER node-red
 
-RUN nvm install 8.2.0 && npm install \
+RUN npm install \
     node-red-contrib-resinio \
     node-red-contrib-credentials \
     node-red-contrib-moment \
