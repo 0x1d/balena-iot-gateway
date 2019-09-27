@@ -5,18 +5,20 @@ volumes:
     zerotier-data:
     homeassistant-data:
 services:
-  homeassistant:
-    image: homeassistant/raspberrypi3-homeassistant:stable
-    environment: 
-      - "TZ=Europe/Zurich" 
-    volumes:
-      - homeassistant-data:/config
-    restart: always
-    network_mode: host
-    privileged: true
-    labels:
-      io.balena.features.dbus: '1'
-      io.balena.features.firmware: '1'
+  #homeassistant:
+  #  image: homeassistant/raspberrypi3-homeassistant:stable
+  #  environment: 
+  #    - "TZ=Europe/Zurich" 
+  #  volumes:
+  #    - homeassistant-data:/config
+  #  ports:
+  #    - 8123:8123
+  #  restart: always
+  #  network_mode: host
+  #  privileged: true
+  #  labels:
+  #    io.balena.features.dbus: '1'
+  #    io.balena.features.firmware: '1'
   zerotier:
     build: 
       context: zerotier
