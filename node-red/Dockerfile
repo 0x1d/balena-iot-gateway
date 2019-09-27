@@ -18,6 +18,7 @@ RUN npm install \
     node-red-contrib-http-multipart \
     node-red-contrib-md5 \
     node-red-contrib-ui_list \
+    node-red-contrib-ui_button \
     node-red-dashboard 
 
 
