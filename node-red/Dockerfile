@@ -5,7 +5,7 @@ USER root
 RUN apt-get update && apt-get install -y nano curl && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 USER node-red
 
-RUN npm install \
+RUN nvm install 8.2.0 && npm install \
     node-red-contrib-resinio \
     node-red-contrib-credentials \
     node-red-contrib-moment \
