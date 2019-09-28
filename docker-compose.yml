@@ -89,6 +89,7 @@ services:
     depends_on:
       - grafana
       - node-red
+      - wifi-connect
     ports:
        - '80:80'
        - '443:443'
@@ -110,6 +111,8 @@ services:
     restart: always
     network_mode: host
     privileged: true
+    ports:
+      - '9090:9090'
     labels:
       io.balena.features.dbus: '1'
       io.balena.features.firmware: '1'
