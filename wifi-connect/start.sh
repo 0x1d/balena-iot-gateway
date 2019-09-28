@@ -22,8 +22,8 @@ while [[ true ]]; do
       printf 'Skipping WiFi Connect\n'
   else
       printf 'Starting WiFi Connect\n'
-      # Start wifi-connect with SSID "balenaDash", Password "balenaDash" and make it exit if no interaction happens within 10 minutes.
-      ./wifi-connect -a 600 -s balenaDash -p balenaDash -o 9090
+      # Start wifi-connect and make it exit if no interaction happens within 10 minutes.
+      ./wifi-connect -a 600 -s wirelos-gateway -p th3r31sn0sp00n -o 9090
   fi
   # wait 1 minute before checking again for internet connectivity
   sleep 60
