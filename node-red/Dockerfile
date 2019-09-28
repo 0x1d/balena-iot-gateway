@@ -8,7 +8,7 @@ COPY ./package.json .
 COPY ./settings.js /data/settings.js
 COPY ./flows.json /data/flows.json
 
-USER node-red
+#USER node-red
 
 RUN npm install
     #node-red-contrib-resinio \
