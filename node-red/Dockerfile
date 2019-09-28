@@ -1,7 +1,7 @@
 FROM nodered/node-red-docker:0.20.8-rpi-v8
 
 # installing an editor
-#USER root
+USER root
 #RUN apt-get update && apt-get install -y nano curl
 
 COPY ./package.json .
