@@ -89,7 +89,6 @@ services:
     depends_on:
       - grafana
       - node-red
-      - wifi-connect
     ports:
        - '80:80'
        - '443:443'
