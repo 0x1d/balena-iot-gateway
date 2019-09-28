@@ -77,6 +77,7 @@ services:
       - '1883:1883'
   node-red:
     build: node-red
+    privileged: true
     volumes:
        - 'node-red-data:/data'
     ports:
