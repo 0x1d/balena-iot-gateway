@@ -1,4 +1,4 @@
-FROM nodered/node-red:latest
+FROM nodered/node-red:1.0.1-10-arm32v7
 
 # installing an editor
 #USER root

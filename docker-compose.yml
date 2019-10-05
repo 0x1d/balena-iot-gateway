@@ -2,7 +2,7 @@ version: '2'
 volumes:
     node-red-data:
     influxdb-data:
-    zerotier-data:
+#    zerotier-data:
     homeassistant-data:
 services:
   #homeassistant:
@@ -77,6 +77,8 @@ services:
       - '1883:1883'
   node-red:
     build: node-red
+    environment:
+      - TZ=Europe/Zurich
     volumes:
        - 'node-red-data:/data'
     ports:
