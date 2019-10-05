@@ -1,4 +1,4 @@
-FROM raymondmm/node-red:latest
+FROM nodered/node-red:latest
 
 # installing an editor
 #USER root
@@ -6,8 +6,16 @@ FROM raymondmm/node-red:latest
 
 USER node-red
 
-RUN npm install
+RUN npm install node-red-contrib-resinio \
+    node-red-contrib-credentials \
+    node-red-contrib-moment \
+    node-red-contrib-config \
+    node-red-contrib-fs-ops \
+    node-red-contrib-http-multipart \
+    node-red-contrib-md5 \
+    node-red-contrib-ui_list \
+    node-red-dashboard
 
-#COPY ./package.json .
+
 COPY ./settings.js /data/settings.js
 COPY ./flows.json /data/flows.json
