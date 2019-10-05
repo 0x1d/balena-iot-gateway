@@ -1,4 +1,4 @@
-FROM nodered/node-red:latest-12
+FROM nodered/node-red:latest
 
 # installing an editor
 #USER root
