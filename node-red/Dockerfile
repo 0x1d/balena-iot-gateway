@@ -4,10 +4,6 @@ FROM nodered/node-red:latest-12
 #USER root
 #RUN apt-get update && apt-get install -y nano curl
 
-#COPY ./package.json .
-COPY ./settings.js /data/settings.js
-COPY ./flows.json /data/flows.json
-
 USER node-red
 
 RUN npm install node-red-contrib-resinio \
@@ -20,3 +16,6 @@ RUN npm install node-red-contrib-resinio \
     node-red-contrib-ui_list \
     node-red-dashboard
 
+
+COPY ./settings.js /data/settings.js
+COPY ./flows.json /data/flows.json
