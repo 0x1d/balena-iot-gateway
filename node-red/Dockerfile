@@ -10,8 +10,7 @@ COPY ./flows.json /data/flows.json
 
 USER node-red
 
-RUN npm install
-    node-red-contrib-resinio \
+RUN npm install node-red-contrib-resinio \
     node-red-contrib-credentials \
     node-red-contrib-moment \
     node-red-contrib-config \
