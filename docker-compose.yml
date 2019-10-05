@@ -71,7 +71,7 @@ services:
     depends_on:
        - influxdb
     restart: always
-  mqtt:
+  mqtt-broker:
     image: panuwitp/mosquitto-arm
     ports:
       - '1883:1883'
@@ -84,7 +84,7 @@ services:
     ports:
        - '1880:1880'
     depends_on:
-        - mqtt
+        - mqtt-broker
     restart: always
   nginx:
     build : nginx
