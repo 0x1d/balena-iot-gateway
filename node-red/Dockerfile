@@ -1,4 +1,4 @@
-FROM nodered/node-red-docker:0.20.8-rpi-v8
+FROM nodered/node-red:latest-12
 
 # installing an editor
 #USER root
@@ -19,5 +19,5 @@ RUN npm install
     #node-red-contrib-http-multipart \
     #node-red-contrib-md5 \
     #node-red-contrib-ui_list \
-    #node-red-dashboard 
+    #node-red-dashboard
 
