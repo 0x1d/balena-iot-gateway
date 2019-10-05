@@ -14,7 +14,6 @@ services:
     ports:
       - 8123:8123
     restart: always
-    network_mode: host
     privileged: true
     labels:
       io.balena.features.dbus: '1'
@@ -73,12 +72,10 @@ services:
     restart: always
   mqtt-broker:
     image: panuwitp/mosquitto-arm
-    network_mode: host
     ports:
       - '1883:1883'
   node-red:
     build: node-red
-    network_mode: host
     environment:
       - TZ=Europe/Zurich
     volumes:
