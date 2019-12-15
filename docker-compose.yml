@@ -1,7 +1,6 @@
 version: '2'
 volumes:
     node-red-data:
-    influxdb-data:
     homeassistant-data:
 services:
   homeassistant:
@@ -35,7 +34,6 @@ services:
   nginx:
     build : nginx
     depends_on:
-      - grafana
       - node-red
     ports:
        - '80:80'
