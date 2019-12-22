@@ -3,6 +3,8 @@ volumes:
     node-red-data:
     homeassistant-data:
 services:
+  ttn:
+    build: ttn
   homeassistant:
     image: homeassistant/raspberrypi3-homeassistant:stable
     environment:
