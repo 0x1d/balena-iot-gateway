@@ -5,6 +5,9 @@ volumes:
 services:
   ttn:
     build: ttn
+    privileged: true
+    cap_add: 
+      - SYS_RAWIO
   homeassistant:
     image: homeassistant/raspberrypi3-homeassistant:stable
     environment:
