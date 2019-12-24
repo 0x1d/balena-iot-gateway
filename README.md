@@ -1,3 +1,5 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/janvda/balena-node-red-mqtt-nginx-TIG-stack) 
+
 # Composite docker application with Node-RED, MQTT broker, Telegraf, InfluxDb, Grafana, Nginx) deployed on Raspberry Pi through [Balena](https://www.balena.io).
 
 IoT gateway based on [balena-node-red-mqtt-nginx-TIG-stack](https://github.com/janvda/balena-node-red-mqtt-nginx-TIG-stack).  
