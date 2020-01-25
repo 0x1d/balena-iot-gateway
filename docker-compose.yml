@@ -19,6 +19,7 @@ services:
     restart: always
     privileged: true
     labels:
+      traefik.enable: true
       io.balena.features.dbus: '1'
       io.balena.features.firmware: '1'
   mqtt-broker:
@@ -36,14 +37,24 @@ services:
     depends_on:
         - mqtt-broker
     restart: always
-  nginx:
-    build : nginx
-    depends_on:
-      - node-red
+    labels: 
+      traefik.enable: true
+  frontend-proxy:
+    image: traefik
+    build: ./traefik
     ports:
-       - '80:80'
-       - '443:443'
-    restart: always
+      - "80:80"
+      - '443:443'      
+    labels:
+      io.balena.features.balena-socket: '1'    
+#  nginx:
+#    build : nginx
+#    depends_on:
+#      - node-red
+#    ports:
+#       - '80:80'
+#       - '443:443'
+#    restart: always
   wifi-connect:
     build: ./wifi-connect
     restart: always
@@ -52,5 +63,6 @@ services:
     ports:
       - '9090:9090'
     labels:
+      traefik.enable: true
       io.balena.features.dbus: '1'
       io.balena.features.firmware: '1'

@@ -1,0 +1,27 @@
+FROM balenalib/%%BALENA_ARCH%%-debian:stretch as run
+LABEL maintainer="https://github.com/ketilmo"
+
+EXPOSE 80 8080 443
+
+ENV TRAEFIK_VERSION=2.0.0-rc1
+ENV TRAEFIK_ARCH=armv5
+
+RUN apt-get update && \
+	apt-get install -y wget && \
+	apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Golang is installed to identify the correct architecture to donwload.
+
+RUN wget --quiet -O traefik.tar.gz "https://github.com/containous/traefik/releases/download/v${TRAEFIK_VERSION}/traefik_v${TRAEFIK_VERSION}_linux_${TRAEFIK_ARCH}.tar.gz"; 
+
+RUN tar -C /usr/bin/ -zxvf traefik.tar.gz && rm traefik.tar.gz
+
+RUN chmod +x /usr/bin/traefik
+
+RUN ln -s /var/run/balena.sock /var/run/docker.sock
+
+COPY start.sh /
+RUN chmod +x /start.sh
+
+ENTRYPOINT ["/start.sh"]
+
