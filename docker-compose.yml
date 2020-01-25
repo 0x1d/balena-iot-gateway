@@ -20,7 +20,7 @@ services:
     privileged: true
     labels:
       traefik.enable: true
-      traefik.frontend.rule: 'Host:hass.sprocket.space'
+      traefik.frontend.rule: 'Host:hass.saft.tech'
       io.balena.features.dbus: '1'
       io.balena.features.firmware: '1'
   mqtt-broker:
@@ -40,7 +40,7 @@ services:
     restart: always
     labels: 
       traefik.enable: true
-      traefik.frontend.rule: 'Host:flow.sprocket.space'
+      traefik.frontend.rule: 'Host:flow.saft.tech'
   frontend-proxy:
     image: traefik
     build: ./traefik
